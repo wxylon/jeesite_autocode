@@ -58,10 +58,10 @@
 		<#list columnList as x>
 		<#if x.isEdit=="Y">
 		<tr>
-			<td class="right" style="width:20%"><#if x.isNull!="Y"><label class="requiredtext">*</label></#if><label class="lable2"><#if x.comment??>${x.comment}</#if></label></td>
+			<td class="right" style="width:20%"><#if (x.isNull)?? && x.isNull!="Y"><label class="requiredtext">*</label></#if><label class="lable2"><#if x.comment??>${x.comment}</#if></label></td>
 			<td style="width:80%">
 			<#if x.isParamKey!="Y">
-			<input type="text" name="entity.${x.javaName}" class="formText<#if x.isNull=="Y"> {byteRangeLength:[0,${x.datasize}]}</#if><#if x.isNull!="Y"> {required: true,byteRangeLength:[0,${x.datasize}],messages: {required:'请输入<#if x.comment??>${x.comment}</#if>'}}</#if>" id="${x.javaName}" value="${r"${entity."}${x.javaName}<#if x.javaType=='Double'>Str</#if><#if x.javaType=='Date'>Str</#if><#if x.isParamKey=="Y">Str</#if>${r"}"}"/>
+			<input type="text" name="entity.${x.javaName}" class="formText<#if (x.isNull)?? && x.isNull=="Y"> {byteRangeLength:[0,${x.datasize}]}</#if><#if (x.isNull)?? && x.isNull!="Y"> {required: true,byteRangeLength:[0,${x.datasize}],messages: {required:'请输入<#if x.comment??>${x.comment}</#if>'}}</#if>" id="${x.javaName}" value="${r"${entity."}${x.javaName}<#if x.javaType=='Double'>Str</#if><#if x.javaType=='Date'>Str</#if><#if x.isParamKey=="Y">Str</#if>${r"}"}"/>
 			
 			</#if>
 			<#if x.dictKey!="">			
